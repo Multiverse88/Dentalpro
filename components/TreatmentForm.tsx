@@ -9,6 +9,7 @@ interface TreatmentFormProps {
   initialTreatment?: Treatment | null;
   defaultSelectedToothIds?: number[];
   isSubmitting?: boolean;
+  currentUser?: { name?: string; email?: string };
 }
 
 const TreatmentForm: React.FC<TreatmentFormProps> = ({
@@ -18,6 +19,7 @@ const TreatmentForm: React.FC<TreatmentFormProps> = ({
   initialTreatment,
   defaultSelectedToothIds = [],
   isSubmitting = false,
+  currentUser
 }) => {
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
   const [selectedToothIds, setSelectedToothIds] = useState<number[]>([]);
@@ -79,7 +81,15 @@ const TreatmentForm: React.FC<TreatmentFormProps> = ({
       );
     }
 
-    onSubmit(treatmentData, updatedPatientTeeth);
+    onSubmit({
+      id: initialTreatment?.id || '',
+      date,
+      toothIds: selectedToothIds,
+      procedure,
+      notes,
+      cost: typeof cost === 'number' ? cost : undefined,
+      performedBy: currentUser?.name || currentUser?.email || undefined,
+    }, updatedPatientTeeth);
   };
 
   const inputBaseClass =
@@ -117,7 +127,7 @@ const TreatmentForm: React.FC<TreatmentFormProps> = ({
                 type="button"
                 key={tooth.id}
                 onClick={() => handleToothSelection(tooth.id)}
-                disabled={isSubmitting || tooth.status === ToothStatus.Missing || tooth.status === ToothStatus.Extracted}
+                disabled={isSubmitting || tooth.status === ToothStatus.Extracted}
                 className={`flex flex-col items-center justify-center px-3 py-2 rounded-lg border text-xs font-semibold transition-all duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-1 min-w-[64px] min-h-[60px] shadow-sm
                   ${selectedToothIds.includes(tooth.id)
                     ? 'bg-indigo-100 border-indigo-500 text-indigo-700 ring-indigo-400'
@@ -138,7 +148,7 @@ const TreatmentForm: React.FC<TreatmentFormProps> = ({
                 type="button"
                 key={tooth.id}
                 onClick={() => handleToothSelection(tooth.id)}
-                disabled={isSubmitting || tooth.status === ToothStatus.Missing || tooth.status === ToothStatus.Extracted}
+                disabled={isSubmitting || tooth.status === ToothStatus.Extracted}
                 className={`flex flex-col items-center justify-center px-3 py-2 rounded-lg border text-xs font-semibold transition-all duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-1 min-w-[64px] min-h-[60px] shadow-sm
                   ${selectedToothIds.includes(tooth.id)
                     ? 'bg-indigo-100 border-indigo-500 text-indigo-700 ring-indigo-400'

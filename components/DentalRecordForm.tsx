@@ -23,8 +23,7 @@ const DentalRecordForm: React.FC<DentalRecordFormProps> = ({
 
   const availableTeeth = patient.teeth
     .filter(
-      (t) =>
-        t.status !== ToothStatus.Missing && t.status !== ToothStatus.Extracted
+      (t) => t.status !== ToothStatus.Extracted
     )
     .sort((a, b) => a.id - b.id);
 
@@ -50,6 +49,7 @@ const DentalRecordForm: React.FC<DentalRecordFormProps> = ({
     }
 
     const recordData: Omit<DentalRecord, 'id'> = {
+      patient_id: patient.id,
       tooth_number: Number(toothNumber),
       treatment_date: new Date(treatmentDate).toISOString(),
       description,

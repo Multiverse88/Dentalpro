@@ -18,13 +18,12 @@ const ToothComponent: React.FC<ToothComponentProps> = ({
   const { id, status } = tooth;
 
   const handleClick = () => {
-    if (status !== ToothStatus.Extracted && status !== ToothStatus.Missing) {
+    if (status !== ToothStatus.Extracted) {
       onClick(id);
     }
   };
 
-  const isDisabled =
-    status === ToothStatus.Extracted || status === ToothStatus.Missing;
+  const isDisabled = status === ToothStatus.Extracted;
   const cursorClass = isDisabled ? 'cursor-not-allowed' : 'cursor-pointer';
 
   return (

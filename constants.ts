@@ -44,7 +44,15 @@ const TOOTH_NAMES_UNS: {
 export const TOOTH_STATUS_OPTIONS = Object.values(ToothStatus).map(
   (status) => ({
     value: status,
-    label: status.replace(/([A-Z])/g, ' $1').trim(), // Add space before capitals
+    label:
+      status === ToothStatus.Healthy ? 'Sehat' :
+      status === ToothStatus.Decay ? 'Karies' :
+      status === ToothStatus.Filled ? 'Tambalan' :
+      status === ToothStatus.Extracted ? 'Dicabut' :
+      status === ToothStatus.RootCanal ? 'Perawatan Saluran Akar' :
+      status === ToothStatus.Crown ? 'Mahkota' :
+      status === ToothStatus.Missing ? 'Gigi Hilang' :
+      status,
   })
 );
 

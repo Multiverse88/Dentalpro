@@ -22,6 +22,7 @@ export interface Treatment {
   procedure: string;
   notes?: string;
   cost?: number;
+  performedBy?: string; // Nama orang yang melakukan treatment
 }
 
 export interface Patient {

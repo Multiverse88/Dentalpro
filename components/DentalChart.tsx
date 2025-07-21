@@ -48,7 +48,7 @@ const DentalChart: React.FC<DentalChartProps> = ({
         </div>
       </div>
       <div className="mt-4 text-xs text-gray-500 text-center">
-        Universal Numbering System (UNS). Klik gigi untuk memilih.
+         Klik gigi untuk memilih.
       </div>
     </div>
   );
