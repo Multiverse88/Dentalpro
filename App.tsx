@@ -410,7 +410,7 @@ const App: React.FC = () => {
   const [filterName, setFilterName] = useState('');
   const [isAuthLoading, setIsAuthLoading] = useState(true);
   const [sidebarActive, setSidebarActive] = useState('dashboard');
-  const [activeModal, setActiveModal] = React.useState<null | 'addPatient' | 'treatment' | 'detail' | 'form' | 'queueDetail' | 'queueForm'>(null);
+  // Removed unused activeModal state
 
   const navigate = useNavigate();
 
@@ -510,6 +510,8 @@ const App: React.FC = () => {
 
   return (
     <Routes>
+      {/* Redirect root to /login */}
+      <Route path="/" element={<Navigate to="/login" replace />} />
       {/* Route login dan register tetap tanpa proteksi */}
       <Route
         path="/login"
