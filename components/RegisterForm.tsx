@@ -7,7 +7,7 @@ interface RegisterFormProps {
   onRegisterSuccess?: (user: Omit<User, 'password'>) => void;
 }
 
-const RegisterForm: React.FC<RegisterFormProps> = ({ onRegisterSuccess }) => {
+const RegisterForm: React.FC<RegisterFormProps> = ({ onRegisterSuccess }: RegisterFormProps) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,6 +15,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegisterSuccess }) => {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

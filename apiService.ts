@@ -1,7 +1,7 @@
 import { Patient, Treatment, Tooth, User, AuthResponse, DentalRecord } from './types';
 
 
-const API_BASE_URL = 'https://dentalpro-be.vercel.app/api';
+const API_BASE_URL = 'http://localhost:3000/api';
 const AUTH_TOKEN_KEY = 'dentalAppAuthToken';
 const AUTH_USER_KEY = 'dentalAppAuthUser';
 
